@@ -1,0 +1,19 @@
+image: node:8.11.4
+
+before_script:
+  - cd website/
+  - npm install
+
+pages: 
+  script:
+    - npm run build
+    - cd build/
+    - cp -r docusaurus public
+    - mv public ..
+    - cd ..
+    - mv public ..
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
